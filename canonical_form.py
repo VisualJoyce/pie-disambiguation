@@ -1,6 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*-
-
 """Baseline that classifies all PIE instances in a canonical form as idiomatic"""
 
 import json
@@ -13,9 +10,9 @@ if sys.version_info[0] >= 3:
 
 
 def canonical_form(data, use_test_data, context_size, data_dir):
-    '''
+    """
     Apply canonical form baseline
-    '''
+    """
 
     canonical_forms = get_canonical_forms(data, use_test_data, data_dir)
     # Classify everything in canonical form as idiomatic
@@ -33,9 +30,9 @@ def canonical_form(data, use_test_data, context_size, data_dir):
 
 
 def get_canonical_forms(data, use_test_data, data_dir):
-    '''
+    """
     Retrieves canonical forms for PIE types from dictionaries
-    '''
+    """
 
     canonical_forms = {}
     # Load dictionaries, lower-case and join together
@@ -67,11 +64,11 @@ def get_canonical_forms(data, use_test_data, data_dir):
 
 
 def expand_indefinite_pronouns(canonical_forms):
-    '''
+    """
     When one's,someone's, someone, your or something occurs in a canonical
     form, add canonical forms with personal pronouns added in. Don't
     expand 'one', because it is too ambiguous.
-    '''
+    """
 
     expanded_canonical_forms = []
     possessive_pronouns = ['my', 'your', 'his', 'her', 'its', 'our', 'their']

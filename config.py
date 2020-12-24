@@ -1,7 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*-
-
-'''Sets parameters, parses and validates command-line arguments'''
+"""Sets parameters, parses and validates command-line arguments"""
 
 import argparse
 import os

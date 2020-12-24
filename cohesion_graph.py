@@ -1,7 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*-
-
-'''Cohesion graph-based classifier for PIE sense disambiguation'''
+"""Cohesion graph-based classifier for PIE sense disambiguation"""
 
 import copy
 import os
@@ -24,7 +21,7 @@ backoff_counter = [0, 0]  # Literal empty, figurative empty
 
 
 class Edge:
-    'Class for edges of the graph'
+    """Class for edges of the graph"""
 
     def __init__(self, words, in_PIE):
         self.words = words  # Tuple of words connected by the edge
@@ -37,9 +34,9 @@ class Edge:
 
 def cohesion_graph(data, use_test_data, embeddings_dir, graph_size, graph_pos, graph_pie, graph_set, graph_lemma,
                    graph_glove, graph_intra, graph_type, graph_definitions):
-    '''
+    """
     Construct cohesion graphs for each PIE and predict sense labels
-    '''
+    """
 
     # Descriptive statistics
     global num_empty_graphs, num_no_pie_graphs, num_no_context_graphs, total_similarity_difference, backoff_counter
@@ -198,9 +195,9 @@ def construct_graph(PIE, pos_tagger, graph_size, graph_pos, graph_pie, graph_set
 
 
 def weight_graph(graph, embeddings):
-    '''
+    """
     Weight graph edges by similarity between words
-    '''
+    """
 
     for edge in graph:
         try:
@@ -217,9 +214,9 @@ def weight_graph(graph, embeddings):
 
 
 def predict_label(graph, graph_type):
-    '''
+    """
     Predict label based on connectivity change with and without PIE
-    '''
+    """
 
     # Descriptive statistics
     global num_empty_graphs, num_no_pie_graphs, num_no_context_graphs, total_similarity_difference
@@ -274,10 +271,10 @@ def predict_label(graph, graph_type):
 
 
 def modify_PIE(PIE, definition_mapping):
-    '''
+    """
     Take a PIE and replace its component words with its
     figurative sense definition and adjust offsets
-    '''
+    """
 
     # Create new PIE
     modified_PIE = copy.deepcopy(PIE)
@@ -287,7 +284,7 @@ def modify_PIE(PIE, definition_mapping):
     except KeyError:
         print('No definition found for PIE {0} '.format(modified_PIE.pie_type.encode('utf-8')))
     # Get sentence to modify
-    sentence_index = len(modified_PIE.context) / 2
+    sentence_index = len(modified_PIE.context) // 2
     sentence = modified_PIE.context[sentence_index]
     # Remove PIE span and insert sense definition there
     initial_offset = modified_PIE.offsets[0][0]
@@ -306,10 +303,10 @@ def modify_PIE(PIE, definition_mapping):
 
 
 def predict_label_contrast(graph_literal, graph_figurative, graph_type):
-    '''
+    """
     Predict label based on connectivity in original graph
     and graph containing idiom definition
-    '''
+    """
 
     # Descriptive statistics
     global num_empty_graphs, num_no_pie_graphs, num_no_context_graphs, total_similarity_difference, backoff_counter
@@ -362,10 +359,10 @@ def predict_label_contrast(graph_literal, graph_figurative, graph_type):
 
 
 def pos_tag(pos_tagger, sentences):
-    '''
+    """
     Take list of sentences, return Spacy Doc that preserves
     original tokenization and sentence split
-    '''
+    """
 
     # Normalize quotes, ‘ ’ ❛ ❜ to ', and “ ” ❝ ❞ to ", Spacy doesn't process them well
     sentences = [re.sub(u'‘|’|❛|❜', u"'", sentence) for sentence in sentences]

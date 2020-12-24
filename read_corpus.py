@@ -1,7 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*-
-
-'''Read in various PIE corpora into a list of PIE objects'''
+"""Read in various PIE corpora into a list of PIE objects"""
 
 import json
 import os
@@ -15,12 +12,12 @@ from pie import PIE
 
 
 def get_sentences_from_BNC(bnc_dir, sentences):
-    '''
+    """
     Extracts sentences from the British National Corpus.
     Takes in a dictionary of {'document_id': {sentence_number: ''}} format,
     returns dictionary of {'document_id': {sentence_number: 'sentence'}} format.
     Using regex rather than parsing the XML is not pretty, but much faster and lighter.
-    '''
+    """
 
     time_0 = time.time()
     print('Getting {0} sentences from BNC...'.format(sum(len(doc) for doc in sentences.values())))
@@ -55,10 +52,10 @@ def get_sentences_from_BNC(bnc_dir, sentences):
 
 
 def convert_VNC_offsets(sentence, offsets):
-    '''
+    """
     VNC offsets are on encoded strings, convert them to
     offsets on unicode strings via token offsets
-    '''
+    """
 
     new_offsets = []
     sentence_encoded = sentence.encode('utf-8')
@@ -86,9 +83,9 @@ def convert_VNC_offsets(sentence, offsets):
 
 
 def read_VNC(vnc_dir, bnc_dir, context_size, work_dir, data_dir, no_cache):
-    '''
+    """
     Reads in the VNC-Tokens Dataset
-    '''
+    """
 
     # If possible, read in VNC from cached json-file
     cache_filename = os.path.join(work_dir, 'vnc-c{0}.pickle'.format(context_size))
@@ -193,9 +190,9 @@ def read_VNC(vnc_dir, bnc_dir, context_size, work_dir, data_dir, no_cache):
 
 
 def read_IDIX(idix_dir, bnc_dir, context_size, work_dir, data_dir, no_cache):
-    '''
+    """
     Reads in the IDIX Corpus
-    '''
+    """
 
     # If possible, read in IDIX from cached json-file
     cache_filename = os.path.join(work_dir, 'idix-c{0}.pickle'.format(context_size))
@@ -289,9 +286,9 @@ def read_IDIX(idix_dir, bnc_dir, context_size, work_dir, data_dir, no_cache):
 
 
 def read_PIE_Corpus(pie_dir, bnc_dir, context_size, work_dir, no_cache):
-    '''
+    """
     Reads in the PIE Corpus
-    '''
+    """
 
     # If possible, read from cached json-file
     cache_filename = os.path.join(work_dir, 'pie-corpus-c{0}.pickle'.format(context_size))
@@ -364,9 +361,9 @@ def read_PIE_Corpus(pie_dir, bnc_dir, context_size, work_dir, no_cache):
 
 
 def read_SemEval(semeval_dir, semeval_contexts, context_size, work_dir, no_cache):
-    '''
+    """
     Reads in the SemEval-2013 Task 5b corpus
-    '''
+    """
 
     # If possible, read in SemEval from cached json-file
     cache_filename = os.path.join(work_dir, 'semeval-c{0}.pickle'.format(context_size))

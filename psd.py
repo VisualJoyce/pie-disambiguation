@@ -1,7 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*- 
-
-'''Run and evaluate the PIE sense disambiguation system'''
+"""Run and evaluate the PIE sense disambiguation system"""
 
 import datetime
 import os

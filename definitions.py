@@ -1,7 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding:utf-8 -*-
-
-u"""Tokenized definitions of idiomatic expressions from IDIX/VNC/SemEval/PIE Corpus"""
+"""Tokenized definitions of idiomatic expressions from IDIX/VNC/SemEval/PIE Corpus"""
 
 # Mapping of PIEs to definitions
 definition_mapping = {
